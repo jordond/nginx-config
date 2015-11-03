@@ -1,0 +1,37 @@
+upstream plex-upstream {
+  server 10.0.0.2:32400;
+}
+
+# Redirect all http traffic to https
+server {
+  listen 80;
+  server_name hoogflix.ca localhost;
+  return 301 https://$host$request_uri;
+}
+
+server {
+  listen       443;
+  server_name  hoogflix.ca;
+
+  gzip on;
+  ssl_certificate      /data/secure/ssl/hoogflix.ca/ssl-unified.crt;
+  ssl_certificate_key  /data/secure/ssl/hoogflix.ca/ssl.key;
+
+  ssl on;
+  include /data/secure/ssl.conf;
+
+  include /data/conf.d/errors.conf;
+
+  location / {
+    if ($http_x_plex_device_name = '') {
+      rewrite ^/$ http://$http_host/web/index.html;
+    }
+
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_redirect off;
+
+    proxy_set_header Host $http_host;
+    proxy_pass http://plex-upstream;
+  }
+}
