@@ -4,4 +4,6 @@ secure/dhparams.pem
 secure/.htpasswd
 secure/.htpasswd-plexrequests
 secure/ssl/*
+!secure/ssl/.gitkeep
 www/*
+!www/.gitkeep
