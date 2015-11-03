@@ -1,3 +1,4 @@
+sites-available/
 logs
 nginx.pid
 secure/dhparams.pem

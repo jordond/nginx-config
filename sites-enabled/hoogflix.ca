@@ -5,7 +5,7 @@ upstream plex-upstream {
 # Redirect all http traffic to https
 server {
   listen 80;
-  server_name hoogflix.ca localhost;
+  server_name hoogflix.ca;
   return 301 https://$host$request_uri;
 }
 
