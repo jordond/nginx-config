@@ -1,7 +1,5 @@
 location /garage/ {
   include /data/reverse-proxy/proxy.conf;
-  proxy_http_version 1.1;
-  proxy_set_header Upgrade $http_upgrade;
-  proxy_set_header Connection "upgrade";
+  include /data/reverse-proxy/sockets.conf;
   proxy_pass http://10.0.0.40/;
 }

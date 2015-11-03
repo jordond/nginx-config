@@ -13,15 +13,14 @@ server {
   ssl_certificate_key       /data/secure/ssl/admin.hoogit.ca/ssl.key;
 
   ssl on;
-  include /data/secure/ssl.conf; 
+  include /data/secure/ssl.conf;
 
   include /data/conf.d/errors.conf;
-  
+
   location / {
     allow 10.0.0.0/24;
     deny all;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
+    include /data/reverse-proxy/proxy.conf;
     proxy_pass http://10.0.0.1/;
   }
 }
