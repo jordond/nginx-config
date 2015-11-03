@@ -1,0 +1,11 @@
+server {
+  listen 80;
+  server_name trakr.hoogit.ca www.trakr.hoogit.ca;
+
+  root /var/www/trakr.hoogit.ca/;
+
+  location / {
+    try_files $uri $uri/ index.html;
+  }
+  include /data/conf.d/errors.conf;
+}

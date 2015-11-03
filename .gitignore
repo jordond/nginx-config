@@ -1,0 +1,7 @@
+logs
+nginx.pid
+secure/dhparams.pem
+secure/.htpasswd
+secure/.htpasswd-plexrequests
+secure/ssl/*
+www/*

@@ -1,0 +1,4 @@
+location ^~ /blog {
+  include /data/reverse-proxy/proxy.conf;
+  proxy_pass http://10.0.0.2:9797;
+}

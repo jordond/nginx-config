@@ -1,0 +1,22 @@
+# Default server configuration
+#
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+
+  server_name _;
+
+  root    /var/www/hoogit.ca;
+
+  gzip on;
+
+  location / {
+    root /var/www/hoogit.ca;
+    index index.html;
+    try_files $uri $uri/ index.html;
+  }
+
+  include /data/reverse-proxy/*.proxy;
+
+  include /data/conf.d/errors.conf;
+}
