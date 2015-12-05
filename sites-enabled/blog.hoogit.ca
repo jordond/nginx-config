@@ -1,0 +1,38 @@
+server {
+  listen 80;
+  server_name blog.hoogit.ca;
+
+  gzip on;
+  include /data/conf.d/errors.conf;
+
+  location / {
+    include /data/reverse-proxy/proxy.conf;
+    include /data/reverse-proxy/sockets.conf;
+
+    proxy_pass http://10.0.0.2:9797;
+  }
+
+  #return 301 https://$host$request_uri;
+}
+
+# disabled automatic forcing of ssl
+server {
+  listen       443;
+  server_name  blog.hoogit.ca;
+
+  gzip on;
+  ssl_certificate      /data/secure/ssl/blog.hoogit.ca/ssl-unified.crt;
+  ssl_certificate_key  /data/secure/ssl/blog.hoogit.ca/ssl.key;
+
+  ssl on;
+  include /data/secure/ssl.conf;
+
+  include /data/conf.d/errors.conf;
+
+  location / {
+    include /data/reverse-proxy/proxy.conf;
+    include /data/reverse-proxy/sockets.conf;
+
+    proxy_pass http://10.0.0.2:9797;
+  }
+}
