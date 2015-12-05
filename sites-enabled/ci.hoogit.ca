@@ -1,0 +1,27 @@
+# Redirect all http traffic to https
+server {
+  listen 80;
+  server_name ci.hoogit.ca;
+  return 301 https://$host$request_uri;
+}
+
+server {
+  listen       443;
+  server_name  ci.hoogit.ca;
+
+  gzip on;
+  ssl_certificate      /data/secure/ssl/ci.hoogit.ca/ssl-unified.crt;
+  ssl_certificate_key  /data/secure/ssl/ci.hoogit.ca/ssl.key;
+
+  ssl on;
+  include /data/secure/ssl.conf;
+
+  include /data/conf.d/errors.conf;
+
+  location / {
+    include /data/reverse-proxy/proxy.conf;
+    include /data/reverse-proxy/sockets.conf;
+
+    proxy_pass http://10.0.0.2:8888;
+  }
+}
