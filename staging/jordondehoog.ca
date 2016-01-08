@@ -1,0 +1,12 @@
+server {
+  listen 80;
+  server_name staging.jordondehoog.ca;
+
+  location / {
+    root   /var/www/staging/jordondehoog.ca;
+    index index.html
+    try_files $uri $uri/ index.html;
+  }
+
+  include /data/conf.d/errors.conf;
+}
