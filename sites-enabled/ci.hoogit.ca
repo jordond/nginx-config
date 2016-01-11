@@ -22,6 +22,8 @@ server {
     include /data/reverse-proxy/proxy.conf;
     include /data/reverse-proxy/sockets.conf;
 
+    proxy_hide_header X-Frame-Options;
+
     proxy_pass http://10.0.0.2:8888;
   }
 }

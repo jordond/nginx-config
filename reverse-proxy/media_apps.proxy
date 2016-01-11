@@ -30,11 +30,3 @@ location /emby {
   include /data/reverse-proxy/sockets.conf;
   proxy_pass http://10.0.0.2:8096;
 }
-
-location /stats {
-  include /data/reverse-proxy/login.conf;
-  include /data/reverse-proxy/proxy.conf;
-  include /data/reverse-proxy/sockets.conf;
-
-  proxy_pass http://10.0.0.2:8123/stats;
-}
