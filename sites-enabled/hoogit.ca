@@ -10,8 +10,8 @@ server {
   server_name  hoogit.ca localhost;
 
   gzip on;
-  ssl_certificate           /data/secure/ssl/hoogit.ca/ssl-hoogit-bundle.crt;
-  ssl_certificate_key       /data/secure/ssl/hoogit.ca/hoogit.ca.key;
+  ssl_certificate           /data/secure/ssl/hoogit.ca/ssl-unified.crt;
+  ssl_certificate_key       /data/secure/ssl/hoogit.ca/ssl.key;
 
   ssl on;
   include /data/secure/ssl.conf;
