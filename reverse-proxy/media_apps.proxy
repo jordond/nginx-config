@@ -1,26 +1,26 @@
 location /download/ {
   include /data/reverse-proxy/login.conf;
   include /data/reverse-proxy/proxy.conf;
-  proxy_pass http://10.0.0.2:6789/;
+  proxy_pass http://10.0.0.10:6789/;
 }
 
 location /torrent {
   include /data/reverse-proxy/login.conf;
   include /data/reverse-proxy/proxy.conf;
   proxy_set_header X-Deluge-Base "/torrent/";
-  proxy_pass http://10.0.0.2:8112/;
+  proxy_pass http://10.0.0.10:8112/;
 }
 
 location /tv {
   include /data/reverse-proxy/login.conf;
   include /data/reverse-proxy/proxy.conf;
-  proxy_pass http://10.0.0.2:8989/tv;
+  proxy_pass http://10.0.0.10:8989/tv;
 }
 
 location /movies {
   include /data/reverse-proxy/login.conf;
   include /data/reverse-proxy/proxy.conf;
-  proxy_pass http://10.0.0.2:5050/movies;
+  proxy_pass http://10.0.0.10:5050/movies;
 }
 
 location /emby {
@@ -28,5 +28,5 @@ location /emby {
   allow all;
   include /data/reverse-proxy/proxy.conf;
   include /data/reverse-proxy/sockets.conf;
-  proxy_pass http://10.0.0.2:8096;
+  proxy_pass http://10.0.0.10:8096;
 }

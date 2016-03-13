@@ -9,7 +9,7 @@ server {
     include /data/reverse-proxy/proxy.conf;
     include /data/reverse-proxy/sockets.conf;
 
-    proxy_pass http://10.0.0.2:9797;
+    proxy_pass http://10.0.0.10:9797;
   }
 
   #return 301 https://$host$request_uri;
@@ -33,6 +33,6 @@ server {
     include /data/reverse-proxy/proxy.conf;
     include /data/reverse-proxy/sockets.conf;
 
-    proxy_pass http://10.0.0.2:9797;
+    proxy_pass http://10.0.0.10:9797;
   }
 }

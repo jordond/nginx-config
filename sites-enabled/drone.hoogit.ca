@@ -1,17 +1,17 @@
 # Redirect all http traffic to https
 server {
   listen 80;
-  server_name ci.hoogit.ca;
+  server_name drone.hoogit.ca;
   return 301 https://$host$request_uri;
 }
 
 server {
   listen       443;
-  server_name  ci.hoogit.ca;
+  server_name  drone.hoogit.ca;
 
   gzip on;
-  ssl_certificate      /data/secure/ssl/ci.hoogit.ca/ssl-unified.crt;
-  ssl_certificate_key  /data/secure/ssl/ci.hoogit.ca/ssl.key;
+  ssl_certificate      /data/secure/ssl/drone.hoogit.ca/ssl-unified.crt;
+  ssl_certificate_key  /data/secure/ssl/drone.hoogit.ca/ssl.key;
 
   ssl on;
   include /data/secure/ssl.conf;
@@ -24,6 +24,6 @@ server {
 
     proxy_hide_header X-Frame-Options;
 
-    proxy_pass http://10.0.0.10:8888;
+    proxy_pass http://10.0.0.10:8029;
   }
 }
