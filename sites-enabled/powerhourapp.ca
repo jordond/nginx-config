@@ -1,7 +1,7 @@
 # Catch-all
 server {
   server_name *.powerhourapp.ca;
-  return 301 https://$host$request_uri;
+  return 301 https://powerhourapp.ca;
 }
 
 # Staging
