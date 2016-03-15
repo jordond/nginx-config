@@ -13,31 +13,31 @@ server {
   }
 }
 
-# Production - Disabled until cert is issued
-# server {
-#   listen 80;
-#   server_name powerhourapp.ca;
+# Production
+ server {
+   listen 80;
+   server_name powerhourapp.ca;
 
-#   return 301 https://$host$request_uri;
-# }
+   return 301 https://$host$request_uri;
+ }
 
-# server {
-#   listen       443;
-#   server_name  stats.hoogit.ca;
+ server {
+   listen       443;
+   server_name  powerhourapp.ca;
 
-#   gzip on;
-#   ssl_certificate      /data/secure/ssl/powerhourapp.ca/ssl-unified.crt;
-#   ssl_certificate_key  /data/secure/ssl/powerhourapp.ca/ssl.key;
+   gzip on;
+   ssl_certificate      /data/secure/ssl/powerhourapp.ca/ssl-unified.crt;
+   ssl_certificate_key  /data/secure/ssl/powerhourapp.ca/ssl.key;
 
-#   ssl on;
-#   include /data/secure/ssl.conf;
+   ssl on;
+   include /data/secure/ssl.conf;
 
-#   include /data/conf.d/errors.conf;
+   include /data/conf.d/errors.conf;
 
-#   location / {
-#     include /data/reverse-proxy/proxy.conf;
-#     include /data/reverse-proxy/sockets.conf;
+   location / {
+     include /data/reverse-proxy/proxy.conf;
+     include /data/reverse-proxy/sockets.conf;
 
-#     proxy_pass http://10.0.0.10:9100;
-#   }
-# }
+     proxy_pass http://10.0.0.10:9100;
+   }
+ }
