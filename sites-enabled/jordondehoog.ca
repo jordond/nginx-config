@@ -2,12 +2,6 @@
 server {
   listen 80;
   server_name staging.jordondehoog.ca;
-  return 301 https://jordondehoog.ca;
-}
-
-server {
-  listen 80;
-  server_name staging.jordondehoog.ca;
 
   location / {
     root   /var/www/staging/jordondehoog.ca;
