@@ -1,4 +1,19 @@
-# Redirect all http traffic to https
+# Staging
+server {
+  listen 80;
+  server_name staging.hoogit.ca;
+
+  gzip on;
+
+  location / {
+    include /data/reverse-proxy/proxy.conf;
+    include /data/reverse-proxy/sockets.conf;
+
+    proxy_pass http://10.0.0.10:20001;
+  }
+}
+
+# Production
 server {
   listen 80;
   server_name hoogit.ca localhost;

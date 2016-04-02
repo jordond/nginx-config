@@ -1,5 +1,12 @@
 # Catch-all
 server {
+  listen 80;
+  server_name *.powerhourapp.ca;
+  return 301 http://powerhourapp.ca;
+}
+
+server {
+  listen 443;
   server_name *.powerhourapp.ca;
   return 301 https://powerhourapp.ca;
 }
@@ -15,7 +22,7 @@ server {
     include /data/reverse-proxy/proxy.conf;
     include /data/reverse-proxy/sockets.conf;
 
-    proxy_pass http://10.0.0.10:9200;
+    proxy_pass http://10.0.0.10:19001;
   }
 }
 
@@ -44,6 +51,6 @@ server {
      include /data/reverse-proxy/proxy.conf;
      include /data/reverse-proxy/sockets.conf;
 
-     proxy_pass http://10.0.0.10:9100;
+     proxy_pass http://10.0.0.10:19000;
    }
  }
