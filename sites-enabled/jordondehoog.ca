@@ -1,16 +1,10 @@
+# Staging
 server {
   listen 80;
-  server_name *.jordondehoog.ca;
-  return 301 http://jordondehoog.ca;
-}
-
-server {
-  listen 443;
-  server_name *.jordondehoog.ca;
+  server_name staging.jordondehoog.ca;
   return 301 https://jordondehoog.ca;
 }
 
-# Staging
 server {
   listen 80;
   server_name staging.jordondehoog.ca;
@@ -25,6 +19,12 @@ server {
 }
 
 # Production
+server {
+  listen 80;
+  server_name jordondehoog.ca;
+  return 301 https://jordondehoog.ca;
+}
+
 server {
   listen 443;
   server_name jordondehoog.ca www.jordondehoog.ca;
