@@ -1,9 +1,43 @@
 server {
   listen 80;
+  server_name *.jordondehoog.ca;
+  return 301 http://jordondehoog.ca;
+}
+
+server {
+  listen 443;
+  server_name *.jordondehoog.ca;
+  return 301 https://jordondehoog.ca;
+}
+
+# Staging
+server {
+  listen 80;
+  server_name staging.jordondehoog.ca;
+
+  location / {
+    root   /var/www/staging/jordondehoog.ca;
+    index index.html
+    try_files $uri $uri/ index.html;
+  }
+
+  include /data/conf.d/errors.conf;
+}
+
+# Production
+server {
+  listen 443;
   server_name jordondehoog.ca www.jordondehoog.ca;
 
   root   /var/www/jordondehoog.ca;
   index  index.html;
+
+  gzip on;
+  ssl_certificate      /data/secure/ssl/jordondehoog.ca/ssl-unified.crt;
+  ssl_certificate_key  /data/secure/ssl/jordondehoog.ca/ssl.key;
+
+  ssl on;
+  include /data/secure/ssl.conf;
 
   location / {
     try_files $uri @prerender;
