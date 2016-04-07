@@ -39,7 +39,5 @@ server {
 
      proxy_pass http://10.0.0.10:20000;
    }
-  }
-
   include /data/reverse-proxy/*.proxy;
 }
