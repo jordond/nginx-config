@@ -32,7 +32,6 @@ server {
   include /data/secure/ssl.conf;
   include /data/conf.d/errors.conf;
   location / {
-    include /data/reverse-proxy/login.conf;
     include /data/reverse-proxy/proxy.conf;
     include /data/reverse-proxy/sockets.conf;
 
